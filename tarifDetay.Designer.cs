@@ -32,16 +32,26 @@
             labelAd = new Label();
             labelSüre = new Label();
             panel1 = new Panel();
+            panel2 = new Panel();
+            comboBox1 = new ComboBox();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            textBox5 = new TextBox();
+            textBox4 = new TextBox();
+            button5 = new Button();
             listBox1 = new ListBox();
             richTextBox1 = new RichTextBox();
             textBox2 = new TextBox();
             textBox1 = new TextBox();
             button3 = new Button();
             button2 = new Button();
+            button4 = new Button();
             button1 = new Button();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox1
@@ -75,12 +85,14 @@
             // 
             panel1.BackgroundImageLayout = ImageLayout.Stretch;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(panel2);
             panel1.Controls.Add(listBox1);
             panel1.Controls.Add(richTextBox1);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(button2);
+            panel1.Controls.Add(button4);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(pictureBox1);
@@ -92,11 +104,85 @@
             panel1.TabIndex = 5;
             panel1.Paint += panel1_Paint;
             // 
+            // panel2
+            // 
+            panel2.Controls.Add(comboBox1);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(label3);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(textBox5);
+            panel2.Controls.Add(textBox4);
+            panel2.Controls.Add(button5);
+            panel2.Location = new Point(644, 142);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(250, 224);
+            panel2.TabIndex = 16;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(122, 15);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(125, 28);
+            comboBox1.TabIndex = 8;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(19, 138);
+            label4.Name = "label4";
+            label4.Size = new Size(44, 20);
+            label4.TabIndex = 7;
+            label4.Text = "Birim";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(19, 80);
+            label3.Name = "label3";
+            label3.Size = new Size(51, 20);
+            label3.TabIndex = 6;
+            label3.Text = "Miktar";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(3, 18);
+            label2.Name = "label2";
+            label2.Size = new Size(97, 20);
+            label2.TabIndex = 5;
+            label2.Text = "Malzeme Adı";
+            label2.Click += label2_Click;
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(122, 131);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(125, 27);
+            textBox5.TabIndex = 4;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(122, 73);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(125, 27);
+            textBox4.TabIndex = 3;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(76, 192);
+            button5.Name = "button5";
+            button5.Size = new Size(121, 29);
+            button5.TabIndex = 1;
+            button5.Text = "Malzeme Ekle";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
             // listBox1
             // 
             listBox1.Enabled = false;
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(376, 142);
+            listBox1.Location = new Point(296, 142);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(321, 224);
             listBox1.TabIndex = 15;
@@ -120,16 +206,19 @@
             // 
             // textBox1
             // 
-            textBox1.Enabled = false;
+            textBox1.BackColor = Color.White;
+            textBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            textBox1.ForeColor = SystemColors.Desktop;
             textBox1.Location = new Point(376, 62);
             textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
             textBox1.Size = new Size(219, 27);
             textBox1.TabIndex = 12;
             // 
             // button3
             // 
             button3.Enabled = false;
-            button3.Location = new Point(717, 536);
+            button3.Location = new Point(717, 578);
             button3.Name = "button3";
             button3.Size = new Size(124, 29);
             button3.TabIndex = 11;
@@ -139,16 +228,28 @@
             // 
             // button2
             // 
-            button2.Location = new Point(717, 485);
+            button2.Enabled = false;
+            button2.Location = new Point(717, 525);
             button2.Name = "button2";
             button2.Size = new Size(124, 29);
             button2.TabIndex = 8;
             button2.Text = "Tarifi Sil";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(399, 372);
+            button4.Name = "button4";
+            button4.Size = new Size(125, 29);
+            button4.TabIndex = 0;
+            button4.Text = "Malzeme Sil";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(717, 428);
+            button1.Location = new Point(717, 461);
             button1.Name = "button1";
             button1.Size = new Size(124, 29);
             button1.TabIndex = 7;
@@ -180,6 +281,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -197,5 +300,14 @@
         private RichTextBox richTextBox1;
         private TextBox textBox2;
         private TextBox textBox1;
+        private Panel panel2;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private TextBox textBox4;
+        private Button button5;
+        private Button button4;
+        private TextBox textBox5;
+        private ComboBox comboBox1;
     }
 }

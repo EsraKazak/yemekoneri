@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            button3 = new Button();
+            label4 = new Label();
             label3 = new Label();
             button2 = new Button();
             panel2 = new Panel();
@@ -40,13 +42,11 @@
             comboBox2 = new ComboBox();
             button1 = new Button();
             label1 = new Label();
-            textBox3 = new TextBox();
             textBox2 = new TextBox();
             comboBox1 = new ComboBox();
             textBox1 = new TextBox();
             pictureBox1 = new PictureBox();
             openFileDialog1 = new OpenFileDialog();
-            label4 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -54,11 +54,11 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(button3);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(panel2);
-            panel1.Controls.Add(textBox3);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(comboBox1);
             panel1.Controls.Add(textBox1);
@@ -67,6 +67,26 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(798, 556);
             panel1.TabIndex = 0;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(211, 140);
+            button3.Name = "button3";
+            button3.Size = new Size(159, 29);
+            button3.TabIndex = 10;
+            button3.Text = "Yeni Malzeme Ekle";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(563, 81);
+            label4.Name = "label4";
+            label4.Size = new Size(50, 20);
+            label4.TabIndex = 9;
+            label4.Text = "label4";
+            label4.Visible = false;
             // 
             // label3
             // 
@@ -78,8 +98,7 @@
             // 
             // button2
             // 
-            button2.Enabled = false;
-            button2.Location = new Point(301, 144);
+            button2.Location = new Point(384, 140);
             button2.Name = "button2";
             button2.Size = new Size(285, 29);
             button2.TabIndex = 6;
@@ -134,7 +153,6 @@
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(130, 27);
             textBox5.TabIndex = 4;
-            textBox5.Text = "Birim";
             // 
             // textBox4
             // 
@@ -142,7 +160,6 @@
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(130, 27);
             textBox4.TabIndex = 3;
-            textBox4.Text = "Miktar";
             // 
             // comboBox2
             // 
@@ -152,6 +169,7 @@
             comboBox2.Size = new Size(130, 28);
             comboBox2.TabIndex = 2;
             comboBox2.Text = "Malzeme Adı";
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // button1
             // 
@@ -161,6 +179,7 @@
             button1.TabIndex = 1;
             button1.Text = "Malzeme Ekle";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // label1
             // 
@@ -171,21 +190,12 @@
             label1.Text = "Malzeme Ekleme";
             label1.Click += label1_Click;
             // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(534, 73);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(135, 27);
-            textBox3.TabIndex = 4;
-            textBox3.Text = "Maliyet";
-            // 
             // textBox2
             // 
             textBox2.Location = new Point(392, 74);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(136, 27);
             textBox2.TabIndex = 3;
-            textBox2.Text = "Hazırlanma süresi";
             // 
             // comboBox1
             // 
@@ -195,14 +205,16 @@
             comboBox1.Size = new Size(175, 28);
             comboBox1.TabIndex = 2;
             comboBox1.Text = "Kategori";
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // textBox1
             // 
             textBox1.Location = new Point(211, 18);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(458, 36);
+            textBox1.Size = new Size(458, 37);
             textBox1.TabIndex = 1;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // pictureBox1
             // 
@@ -218,15 +230,6 @@
             // openFileDialog1
             // 
             openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(392, 117);
-            label4.Name = "label4";
-            label4.Size = new Size(50, 20);
-            label4.TabIndex = 9;
-            label4.Text = "label4";
             // 
             // tarifekle
             // 
@@ -251,7 +254,6 @@
         private Panel panel1;
         private TextBox textBox1;
         private PictureBox pictureBox1;
-        private TextBox textBox3;
         private TextBox textBox2;
         private ComboBox comboBox1;
         private Panel panel2;
@@ -267,5 +269,6 @@
         private Label label3;
         private OpenFileDialog openFileDialog1;
         private Label label4;
+        private Button button3;
     }
 }
