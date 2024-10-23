@@ -527,28 +527,30 @@ namespace yemektarifleri
                 tarifPanel.Controls.Clear();
                 return;
             }
-
-           
             // SQL sorgusunu dinamik olarak oluştur
             string malzemeFiltre = string.Join(",", secilenMalzemeIDler);
             string query = $@"
-SELECT 
+  SELECT 
     t.TarifID, 
-    t.TarifAdi, 
+    t.TarifAdi,
+    t.HazirlamaSuresi,
     (COUNT(DISTINCT tm.MalzemeID) * 100.0) / NULLIF((SELECT COUNT(*) 
                                                       FROM tarifMalzeme 
                                                       WHERE TarifID = t.TarifID), 0) AS EslestirmeYuzdesi
 FROM 
     tarifler AS t
-LEFT JOIN 
-    tarifMalzeme AS tm ON t.TarifID = tm.TarifID AND tm.MalzemeID IN ({malzemeFiltre})
+INNER JOIN 
+    tarifMalzeme AS tm ON t.TarifID = tm.TarifID
 WHERE 
-    t.TarifID IN (SELECT TarifID FROM tarifMalzeme WHERE MalzemeID IN ({malzemeFiltre}))
+    tm.MalzemeID IN ({malzemeFiltre}) -- Seçilen malzemeler
 GROUP BY 
-    t.TarifID, t.TarifAdi
+    t.TarifID, t.TarifAdi,t.HazirlamaSuresi
+HAVING 
+    COUNT(DISTINCT tm.MalzemeID) = {secilenMalzemeIDler.Count} -- Tarifin tüm seçilen malzemelere sahip olması
 ORDER BY 
     EslestirmeYuzdesi DESC;";
-            // Veritabanına bağlan ve sorguyu çalıştır
+
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -565,36 +567,50 @@ ORDER BY
                         int pictureBoxHeight = 100; // Resmin yüksekliği
                         int labelHeight = 30; // Yazının yüksekliği
                         int margin = 20; // Resim ve etiketler arası boşluk
-                        int maxColumns = (tarifPanel.Width / (pictureBoxWidth + margin)); // Bir satırda kaç resim olabileceğini hesapla
 
                         while (reader.Read())
                         {
                             int tarifID = (int)reader["TarifID"]; // Tarif ID'sini al
-                            string resimYolu = GetResimYolu(tarifID); // Resim yolunu al
+                            string tarifAdi = reader["TarifAdi"].ToString(); // Tarif adını al
+                            string hazirlamaSuresi = reader["HazirlamaSuresi"].ToString(); // Hazırlanma süresini al
+                            decimal eslestirmeYuzdesi = Convert.ToDecimal(reader["EslestirmeYuzdesi"]);
+
+                            // Resim yolunu ve talimatları ayrı sorguda al
+                            string talimat, resimYolu;
+                            GetTarifDetaylari(tarifID, out talimat, out resimYolu);
                             Image resim = Image.FromFile(resimYolu);
+
                             PictureBox pictureBox = new PictureBox
                             {
-
                                 SizeMode = PictureBoxSizeMode.StretchImage,
                                 Image = resim,
                                 Location = new Point(x, y),
                                 Size = new Size(pictureBoxWidth, pictureBoxHeight)
-
-                              
                             };
-
+                            bool yeterli = YeterliMalzemeVarMi(tarifID);
                             Label lblTarif = new Label
                             {
-                                Text = $"{reader["TarifAdi"]}\n {Convert.ToDecimal(reader["EslestirmeYuzdesi"]).ToString("F2")}%",
+
+
+                                Text = $"{tarifAdi}\n{eslestirmeYuzdesi:F2}%",
                                 AutoSize = true,
-                                Location = new Point(x, y + pictureBoxHeight + 5) // Resmin altına yerleştir
+                                Location = new Point(x, y + pictureBoxHeight + 5), // Resmin altına yerleştir
+                                ForeColor = yeterli ? Color.Green : Color.Red
+                        };
+
+                            pictureBox.Click += (sender, e) =>
+                            {
+                                // Yeni tarifDetay formunu oluştur
+                                tarifDetay detayForm = new tarifDetay();
+                                detayForm.Goster(resim, tarifAdi, hazirlamaSuresi, talimat, tarifID); // Goster metodunu güncelle
+                                detayForm.ShowDialog(); // Detay formunu modal olarak göster
                             };
 
                             // Tarif paneline ekle
                             tarifPanel.Controls.Add(pictureBox);
                             tarifPanel.Controls.Add(lblTarif);
 
-                            x += pictureBoxWidth + margin+5; // Bir sonraki resmin konumu için sağa kaydır
+                            x += pictureBoxWidth + margin + 5; // Bir sonraki resmin konumu için sağa kaydır
 
                             // Eğer x konumu panelin genişliğini aşıyorsa, bir alt satıra geç
                             if (x + pictureBoxWidth > tarifPanel.Width)
@@ -608,11 +624,13 @@ ORDER BY
             }
         }
 
-        private static string GetResimYolu(int tarifID)
+        // Talimatlar ve Resim için ayrı bir sorgu
+        private static void GetTarifDetaylari(int tarifID, out string talimat, out string resimYolu)
         {
-            string resimYolu = string.Empty;
+            talimat = "";
+            resimYolu = "default_image_path.jpg"; // Varsayılan resim yolu
 
-            string query = "SELECT resim FROM tarifler WHERE TarifID = @TarifID";
+            string query = "SELECT Talimatlar, resim FROM tarifler WHERE TarifID = @TarifID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -620,23 +638,18 @@ ORDER BY
                 {
                     command.Parameters.AddWithValue("@TarifID", tarifID);
                     connection.Open();
-                    object result = command.ExecuteScalar(); // Buradan gelen sonuç 'object' tipindedir.
-
-                    // Eğer sonuç null değilse, string'e dönüştür.
-                    if (result != null)
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        resimYolu = result.ToString();
-                    }
-                    else
-                    {
-                        // Hata yönetimi: Eğer resim yoksa uygun bir değer döndür
-                        resimYolu = "default_path_to_image.jpg"; // Varsayılan bir resim yolu verin.
+                        if (reader.Read())
+                        {
+                            talimat = reader["Talimatlar"].ToString();
+                            resimYolu = reader["resim"].ToString();
+                        }
                     }
                 }
             }
-
-            return resimYolu;
         }
+
 
 
         public static bool MalzemeSil(int tarifID, string malzemeAdi)

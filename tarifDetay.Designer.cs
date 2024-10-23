@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(tarifDetay));
             pictureBox1 = new PictureBox();
             labelAd = new Label();
             labelSüre = new Label();
@@ -66,24 +67,28 @@
             // labelAd
             // 
             labelAd.AutoSize = true;
+            labelAd.BackColor = Color.Transparent;
+            labelAd.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
             labelAd.Location = new Point(296, 62);
             labelAd.Name = "labelAd";
-            labelAd.Size = new Size(74, 20);
+            labelAd.Size = new Size(79, 20);
             labelAd.TabIndex = 1;
             labelAd.Text = "Tarif Adı -";
             // 
             // labelSüre
             // 
             labelSüre.AutoSize = true;
+            labelSüre.BackColor = Color.Transparent;
+            labelSüre.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             labelSüre.Location = new Point(651, 62);
             labelSüre.Name = "labelSüre";
-            labelSüre.Size = new Size(141, 20);
+            labelSüre.Size = new Size(144, 20);
             labelSüre.TabIndex = 2;
-            labelSüre.Text = "Hazırlanma Süredi -";
+            labelSüre.Text = "Hazırlanma Süresi -";
             // 
             // panel1
             // 
-            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
             panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(listBox1);
@@ -106,6 +111,8 @@
             // 
             // panel2
             // 
+            panel2.BackColor = Color.Transparent;
+            panel2.BackgroundImageLayout = ImageLayout.Stretch;
             panel2.Controls.Add(comboBox1);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label3);
@@ -129,27 +136,33 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label4.Location = new Point(19, 138);
             label4.Name = "label4";
-            label4.Size = new Size(44, 20);
+            label4.Size = new Size(47, 20);
             label4.TabIndex = 7;
             label4.Text = "Birim";
             // 
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label3.Location = new Point(19, 80);
             label3.Name = "label3";
-            label3.Size = new Size(51, 20);
+            label3.Size = new Size(55, 20);
             label3.TabIndex = 6;
             label3.Text = "Miktar";
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label2.Location = new Point(3, 18);
             label2.Name = "label2";
-            label2.Size = new Size(97, 20);
+            label2.Size = new Size(100, 20);
             label2.TabIndex = 5;
             label2.Text = "Malzeme Adı";
             label2.Click += label2_Click;
@@ -170,6 +183,7 @@
             // 
             // button5
             // 
+            button5.Enabled = false;
             button5.Location = new Point(76, 192);
             button5.Name = "button5";
             button5.Size = new Size(121, 29);
@@ -239,6 +253,7 @@
             // 
             // button4
             // 
+            button4.Enabled = false;
             button4.Location = new Point(399, 372);
             button4.Name = "button4";
             button4.Size = new Size(125, 29);
@@ -260,6 +275,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label1.Location = new Point(62, 391);
             label1.Name = "label1";
@@ -277,6 +293,7 @@
             MaximizeBox = false;
             Name = "tarifDetay";
             Text = "tarifDetay";
+            FormClosed += tarifDetay_FormClosed;
             Load += tarifDetay_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);

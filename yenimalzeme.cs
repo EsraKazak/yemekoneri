@@ -54,5 +54,17 @@ namespace yemektarifleri
         {
 
         }
+
+        private void yenimalzeme_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            tarifekle trf = new tarifekle();
+            trf.Show();
+            
+        }
+
+        private void yenimalzeme_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

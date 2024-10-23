@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(tarifekle));
             panel1 = new Panel();
             button3 = new Button();
             label4 = new Label();
@@ -54,6 +55,8 @@
             // 
             // panel1
             // 
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
             panel1.Controls.Add(button3);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
@@ -65,12 +68,12 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(0, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(798, 556);
+            panel1.Size = new Size(904, 633);
             panel1.TabIndex = 0;
             // 
             // button3
             // 
-            button3.Location = new Point(211, 140);
+            button3.Location = new Point(282, 182);
             button3.Name = "button3";
             button3.Size = new Size(159, 29);
             button3.TabIndex = 10;
@@ -81,7 +84,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(563, 81);
+            label4.Location = new Point(634, 123);
             label4.Name = "label4";
             label4.Size = new Size(50, 20);
             label4.TabIndex = 9;
@@ -90,7 +93,7 @@
             // 
             // label3
             // 
-            label3.Location = new Point(56, 52);
+            label3.Location = new Point(127, 94);
             label3.Name = "label3";
             label3.Size = new Size(66, 85);
             label3.TabIndex = 8;
@@ -98,7 +101,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(384, 140);
+            button2.Location = new Point(455, 182);
             button2.Name = "button2";
             button2.Size = new Size(285, 29);
             button2.TabIndex = 6;
@@ -108,7 +111,8 @@
             // 
             // panel2
             // 
-            panel2.BorderStyle = BorderStyle.Fixed3D;
+            panel2.BackColor = Color.Transparent;
+            panel2.BackgroundImageLayout = ImageLayout.Stretch;
             panel2.Controls.Add(richTextBox1);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(listBox1);
@@ -117,7 +121,7 @@
             panel2.Controls.Add(comboBox2);
             panel2.Controls.Add(button1);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(12, 188);
+            panel2.Location = new Point(83, 230);
             panel2.Name = "panel2";
             panel2.Size = new Size(760, 365);
             panel2.TabIndex = 5;
@@ -132,6 +136,8 @@
             // 
             // label2
             // 
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label2.Location = new Point(470, 9);
             label2.Name = "label2";
             label2.Size = new Size(156, 38);
@@ -183,6 +189,7 @@
             // 
             // label1
             // 
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label1.Location = new Point(84, 9);
             label1.Name = "label1";
             label1.Size = new Size(124, 25);
@@ -192,7 +199,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(392, 74);
+            textBox2.Location = new Point(463, 116);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(136, 27);
             textBox2.TabIndex = 3;
@@ -200,7 +207,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(211, 73);
+            comboBox1.Location = new Point(282, 115);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(175, 28);
             comboBox1.TabIndex = 2;
@@ -209,7 +216,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(211, 18);
+            textBox1.Location = new Point(282, 60);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(458, 37);
@@ -219,7 +226,7 @@
             // pictureBox1
             // 
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox1.Location = new Point(12, 9);
+            pictureBox1.Location = new Point(83, 51);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(175, 173);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -235,11 +242,12 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 561);
+            ClientSize = new Size(916, 643);
             Controls.Add(panel1);
             MaximizeBox = false;
             Name = "tarifekle";
             Text = "tarifekle";
+            FormClosed += tarifekle_FormClosed;
             Load += tarifekle_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

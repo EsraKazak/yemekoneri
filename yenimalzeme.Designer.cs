@@ -166,6 +166,8 @@
             Controls.Add(panel1);
             Name = "yenimalzeme";
             Text = "yenimalzeme";
+            FormClosed += yenimalzeme_FormClosed;
+            Load += yenimalzeme_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

@@ -169,6 +169,10 @@ namespace yemektarifleri
 
         }
 
-
+        private void tarifekle_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form1 frm=new Form1();
+            frm.Show();
+        }
     }
 }

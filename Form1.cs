@@ -334,18 +334,23 @@ namespace yemektarifleri
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*SELECT DISTINCT tarifler.*
-FROM tarifler
-JOIN tarifMalzeme ON tarifler.TarifID = tarifMalzeme.TarifID
-WHERE tarifMalzeme.MalzemeID IN(iþaretlenenMalzemeID'ler);*/
+
 
         }
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            Malzemeyegöreara mlz=new Malzemeyegöreara();
+            Malzemeyegöreara mlz = new Malzemeyegöreara();
             mlz.ShowDialog();
-            this.Close();   
+            this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            stokform stk=new stokform();
+            stk.ShowDialog();
+            
         }
     }
 }

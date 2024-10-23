@@ -174,10 +174,10 @@ namespace yemektarifleri
             string malzemeBirim = textBox5.Text;
 
             // Kontroller
-            if (!string.IsNullOrEmpty(malzemeAd)  && !string.IsNullOrEmpty(malzemeBirim))
+            if (!string.IsNullOrEmpty(malzemeAd) && !string.IsNullOrEmpty(malzemeBirim))
             {
                 // Sorgu sınıfı üzerinden malzeme ekleme işlemi çağrılıyor
-                
+
                 bool eklemeBasariliMi = sorgu.MalzemeEkle2(TarifID, malzemeAd, malzemeMiktar);
 
                 if (eklemeBasariliMi)
@@ -197,6 +197,12 @@ namespace yemektarifleri
             {
                 MessageBox.Show("Lütfen tüm alanları doldurun.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void tarifDetay_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form1 frm=new Form1();
+            frm.Show();
         }
     }
 }

@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             comboBox1 = new ComboBox();
             textBox1 = new TextBox();
             button1 = new Button();
             button2 = new Button();
             panel1 = new Panel();
+            button4 = new Button();
             button3 = new Button();
             comboBox3 = new ComboBox();
             comboBox2 = new ComboBox();
@@ -56,7 +58,7 @@
             // 
             textBox1.Location = new Point(13, 25);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(576, 27);
+            textBox1.Size = new Size(471, 27);
             textBox1.TabIndex = 1;
             textBox1.Text = "Yemek Tarifi Arayın";
             textBox1.TextChanged += textBox1_TextChanged;
@@ -75,9 +77,9 @@
             // 
             // button2
             // 
-            button2.Location = new Point(611, 24);
+            button2.Location = new Point(504, 25);
             button2.Name = "button2";
-            button2.Size = new Size(243, 29);
+            button2.Size = new Size(171, 29);
             button2.TabIndex = 5;
             button2.Text = "Sonuçları filtrele ve Ara";
             button2.UseVisualStyleBackColor = true;
@@ -85,6 +87,9 @@
             // 
             // panel1
             // 
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(comboBox3);
             panel1.Controls.Add(comboBox2);
@@ -97,6 +102,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(866, 555);
             panel1.TabIndex = 6;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(681, 25);
+            button4.Name = "button4";
+            button4.Size = new Size(162, 29);
+            button4.TabIndex = 11;
+            button4.Text = "Stok Bilgileri";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -130,6 +145,7 @@
             // 
             // panel2
             // 
+            panel2.BackColor = SystemColors.Control;
             panel2.Location = new Point(13, 129);
             panel2.Name = "panel2";
             panel2.Size = new Size(841, 413);
@@ -162,5 +178,6 @@
         private ComboBox comboBox2;
         private ComboBox comboBox3;
         private Button button3;
+        private Button button4;
     }
 }

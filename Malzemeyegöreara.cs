@@ -16,8 +16,8 @@ namespace yemektarifleri
         {
             InitializeComponent();
             panel1.AutoScroll = true;
-            panel2.AutoScroll = true;   
-            sorgu.Malzemeleripanelekoy(panel1,panel2); 
+            panel2.AutoScroll = true;
+            sorgu.Malzemeleripanelekoy(panel1, panel2);
         }
 
 
@@ -26,6 +26,11 @@ namespace yemektarifleri
 
         }
 
-       
+        private void Malzemeyegöreara_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form1 form=new Form1();
+            form.Show();
+
+        }
     }
 }
